@@ -11,9 +11,11 @@ namespace hotel_management.Models
         public int Id { get; set; }
 
         [ForeignKey("Reservation")]
+        [Required]
         public int ReservationId { get; set; }
 
         [ForeignKey("User")]
+        [Required]
         public int UserId { get; set; }
 
         public int Rating { get; set; }

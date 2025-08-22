@@ -13,6 +13,8 @@ namespace hotel_management.Models
         public string Name { get; set; } // standard, deluxe...
 
         public byte View { get; set; } // 1=sea, 2=mountain
+
+        [Required]
         public byte Type { get; set; } // 1=single, 2=double...
 
         public int Capacity { get; set; }

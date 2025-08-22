@@ -11,8 +11,10 @@ namespace hotel_management.Models
         public int Id { get; set; }
 
         [ForeignKey("RoomType")]
+        [Required]
         public int RoomTypeId { get; set; }
 
+        [Required]
         public string RoomNumber { get; set; }
 
         public byte Status { get; set; } // 1=Available, 2=Occupied...

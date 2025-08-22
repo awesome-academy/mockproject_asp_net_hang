@@ -11,12 +11,17 @@ namespace hotel_management.Models
         public int Id { get; set; }
 
         [ForeignKey("Room")]
+        [Required]
         public int RoomId { get; set; }
 
         [ForeignKey("User")]
+        [Required]
         public int UserId { get; set; }
 
+        [Required]
         public DateTime StartDate { get; set; }
+
+        [Required]
         public DateTime EndDate { get; set; }
 
         [ForeignKey("RoomDiscount")]

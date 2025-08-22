@@ -9,10 +9,15 @@ namespace hotel_management.Models
     {
         public int Id { get; set; }
 
+        [ForeignKey("User")]
+        [Required]
         public int UserId { get; set; }
 
+
+        [Required]
         public string Token { get; set; }
 
+        [Required]
         public byte TokenType { get; set; } // 1=EmailVerification, 2=PasswordReset
 
         public DateTime ExpiredAt { get; set; }

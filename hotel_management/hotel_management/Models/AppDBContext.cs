@@ -29,7 +29,23 @@ namespace hotel_management.Models
                 .HasRequired(r => r.User)
                 .WithMany(u => u.Reservations)
                 .HasForeignKey(r => r.UserId)
-                .WillCascadeOnDelete(false); // tắt cascade delete
+                .WillCascadeOnDelete(false);
+
+            modelBuilder.Entity<Reservation>()
+                .Property(r => r.FinalPrice)
+                .HasPrecision(18, 2); // set column type for FinalPrice
+
+            modelBuilder.Entity<RoomType>()
+                .Property(r => r.Price)
+                .HasPrecision(18, 2);
+
+            modelBuilder.Entity<RoomDiscount>()
+                .Property(r => r.DiscountValue)
+                .HasPrecision(18, 2);
+
+            modelBuilder.Entity<Reservation>()
+                .Property(r => r.FinalPrice)
+                .HasPrecision(18, 2);
 
             modelBuilder.Entity<Review>()
                 .HasRequired(rv => rv.User)

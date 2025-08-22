@@ -13,6 +13,7 @@ namespace hotel_management.Models
         [ForeignKey("RoomType")]
         public int RoomTypeId { get; set; }
 
+        [Required]
         public byte DiscountType { get; set; } // 1=percent, 2=fixed
 
         public decimal DiscountValue { get; set; }
