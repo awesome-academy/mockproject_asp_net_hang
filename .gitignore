@@ -3,6 +3,7 @@
 #launch.json folder
 .vscode/
 .vs/
+hotel_management/hotel_management/obj/
 #Cache folder
 .alcache/
 #Symbols folder
