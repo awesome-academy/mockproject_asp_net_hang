@@ -131,7 +131,20 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202508220415379_InitialCreate.cs" />
+    <Compile Include="Migrations\202508220415379_InitialCreate.Designer.cs">
+      <DependentUpon>202508220415379_InitialCreate.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AppDbContext.cs" />
+    <Compile Include="Models\Reservation.cs" />
+    <Compile Include="Models\Review.cs" />
+    <Compile Include="Models\Role.cs" />
+    <Compile Include="Models\Room.cs" />
+    <Compile Include="Models\RoomDiscount.cs" />
+    <Compile Include="Models\RoomType.cs" />
+    <Compile Include="Models\User.cs" />
+    <Compile Include="Models\UserActivation.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -215,6 +228,11 @@
     <Content Include="Scripts\bootstrap.bundle.js.map" />
     <Content Include="Scripts\jquery-3.7.0.slim.min.map" />
     <Content Include="Scripts\jquery-3.7.0.min.map" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\202508220415379_InitialCreate.resx">
+      <DependentUpon>202508220415379_InitialCreate.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
