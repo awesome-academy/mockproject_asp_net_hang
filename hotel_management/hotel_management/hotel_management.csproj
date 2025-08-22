@@ -179,6 +179,7 @@
     <Compile Include="Models\User.cs" />
     <Compile Include="Models\UserActivation.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Services\Mail\IMailService.cs" />
     <Compile Include="Services\Mail\MailService.cs" />
     <Compile Include="Services\Mail\MailSettings.cs" />
   </ItemGroup>

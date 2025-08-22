@@ -16,29 +16,29 @@ namespace hotel_management.Services.Mail
 
         public async Task SendMailAsync(string toEmail, string subject, string body)
         {
-            using (var client = new SmtpClient(_settings.SmtpHost, _settings.SmtpPort))
+            try
             {
-                client.EnableSsl = true;
-                client.Credentials = new NetworkCredential(_settings.SmtpUser, _settings.SmtpPass);
+                using (var client = new SmtpClient(_settings.SmtpHost, _settings.SmtpPort))
+                {
+                    client.EnableSsl = true;
+                    client.Credentials = new NetworkCredential(_settings.SmtpUser, _settings.SmtpPass);
 
-                var mail = new MailMessage
-                {
-                    From = new MailAddress(_settings.SmtpUser, "Hotel Management System"),
-                    Subject = subject,
-                    Body = body,
-                    IsBodyHtml = true
-                };
-                mail.To.Add(toEmail);
+                    using (var mail = new MailMessage())
+                    {
+                        mail.From = new MailAddress(_settings.SmtpUser, "Hotel Management System");
+                        mail.To.Add(toEmail);
+                        mail.Subject = subject;
+                        mail.Body = body;
+                        mail.IsBodyHtml = true;
 
-                try
-                {
-                    await client.SendMailAsync(mail);
+                        await client.SendMailAsync(mail);
+                    }
                 }
-                catch (Exception ex)
-                {
-                    System.Diagnostics.Trace.TraceError("Error sending mail: " + ex);
-                    throw;
-                }
+            }
+            catch (Exception ex)
+            {
+                System.Diagnostics.Trace.TraceError("Error sending mail: " + ex);
+                throw;
             }
         }
     }
