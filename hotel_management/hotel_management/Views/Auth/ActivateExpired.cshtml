@@ -1,0 +1,14 @@
+﻿@{
+    Layout = "~/Views/Shared/_UnAuthLayout.cshtml";
+    ViewBag.Title = "Link kích hoạt hết hạn";
+}
+
+<h2>Liên kết kích hoạt đã hết hạn</h2>
+<p>Email của bạn: <strong>@ViewBag.Email</strong></p>
+
+@using (Html.BeginForm("ResendActivationEmail", "Auth", FormMethod.Post))
+{
+    @Html.AntiForgeryToken()
+    <input type="hidden" name="email" value="@ViewBag.Email" />
+    <button type="submit" class="btn btn-warning">Gửi lại email kích hoạt</button>
+}

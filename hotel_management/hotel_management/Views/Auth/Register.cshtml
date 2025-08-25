@@ -1,0 +1,64 @@
+﻿@{
+    Layout = "~/Views/Shared/_UnAuthLayout.cshtml";
+}
+
+@model hotel_management.Models.AuthView.RegisterViewModel
+
+<div class="min-vh-100 d-flex align-items-center justify-content-center flex-column">
+
+    <!-- Title -->
+    <h2 class="mb-4">Medium Register</h2>
+
+    <!-- Form -->
+    @using (Html.BeginForm("Register", "Auth", FormMethod.Post, new { @class = "form", style = "min-width: 350px;" }))
+    {
+        @Html.AntiForgeryToken()
+
+        <!-- Username -->
+        <div class="mb-3">
+            @Html.LabelFor(m => m.Username, htmlAttributes: new { @class = "form-label" })
+            <span class="text-danger">*</span>
+            @Html.TextBoxFor(m => m.Username, new { @class = "form-control" })
+            @Html.ValidationMessageFor(m => m.Username, "", new { @class = "text-danger" })
+        </div>
+
+        <!-- Email -->
+        <div class="mb-3">
+            @Html.LabelFor(m => m.Email, htmlAttributes: new { @class = "form-label" })
+            <span class="text-danger">*</span>
+            @Html.TextBoxFor(m => m.Email, new { @class = "form-control", type = "email" })
+            @Html.ValidationMessageFor(m => m.Email, "", new { @class = "text-danger" })
+        </div>
+
+        <!-- Password -->
+        <div class="mb-3">
+            @Html.LabelFor(m => m.Password, htmlAttributes: new { @class = "form-label" })
+            <span class="text-danger">*</span>
+            @Html.PasswordFor(m => m.Password, new { @class = "form-control" })
+            @Html.ValidationMessageFor(m => m.Password, "", new { @class = "text-danger" })
+        </div>
+
+        <!-- Phone -->
+        <div class="mb-3">
+            @Html.LabelFor(m => m.Phone, htmlAttributes: new { @class = "form-label" })
+            @Html.TextBoxFor(m => m.Phone, new { @class = "form-control", type = "tel" })
+            @Html.ValidationMessageFor(m => m.Phone, "", new { @class = "text-danger" })
+        </div>
+
+        <!-- Address -->
+        <div class="mb-3">
+            @Html.LabelFor(m => m.Address, htmlAttributes: new { @class = "form-label" })
+            @Html.TextBoxFor(m => m.Address, new { @class = "form-control" })
+            @Html.ValidationMessageFor(m => m.Address, "", new { @class = "text-danger" })
+        </div>
+
+        <!-- Submit -->
+        <div class="text-center">
+            <button type="submit" class="btn btn-primary">Register</button>
+        </div>
+    }
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
