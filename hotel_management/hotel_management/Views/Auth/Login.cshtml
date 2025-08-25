@@ -1,0 +1,53 @@
+﻿@{
+    ViewBag.Title = "Đăng nhập";
+    Layout = "~/Views/Shared/_AuthLayout.cshtml";
+}
+
+<div class="container d-flex justify-content-center align-items-center" style="min-height: 100vh;">
+    <div class="card shadow-lg p-4" style="max-width: 400px; width: 100%;">
+        <h3 class="text-center mb-4">Đăng nhập</h3>
+
+        @using (Html.BeginForm("Login", "Auth", FormMethod.Post, new { @class = "needs-validation" }))
+        {
+            @Html.AntiForgeryToken()
+
+            if (TempData["Message"] != null)
+            {
+                <div class="alert alert-success">
+                    @TempData["Message"]
+                </div>
+            }
+            if (TempData["Error"] != null)
+            {
+                <div class="alert alert-danger">
+                    @TempData["Error"]
+                </div>
+            }
+
+            <div class="mb-3">
+                <label for="emailOrUsername" class="form-label">Email hoặc Username</label>
+                <input type="text" class="form-control" id="emailOrUsername" name="emailOrUsername" required />
+            </div>
+
+            <div class="mb-3">
+                <label for="password" class="form-label">Mật khẩu</label>
+                <input type="password" class="form-control" id="password" name="password" required />
+            </div>
+
+            if (!ViewData.ModelState.IsValid)
+            {
+                <div class="alert alert-danger">
+                    @Html.ValidationSummary()
+                </div>
+            }
+
+            <div class="d-grid mb-3">
+                <button type="submit" class="btn btn-primary">Đăng nhập</button>
+            </div>
+
+            <div class="text-center">
+                <a href="@Url.Action("ForgotPassword", "Auth")">Quên mật khẩu?</a>
+            </div>
+        }
+    </div>
+</div>

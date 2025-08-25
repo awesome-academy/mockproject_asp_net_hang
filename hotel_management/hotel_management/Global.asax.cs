@@ -1,9 +1,11 @@
 ﻿using dotenv.net;
 using hotel_management.Services.Mail;
 using System;
+using System.Security.Principal;
 using System.Web.Mvc;
 using System.Web.Optimization;
 using System.Web.Routing;
+using System.Web.Security;
 using Unity;
 using Unity.AspNet.Mvc;
 
@@ -37,6 +39,33 @@ namespace hotel_management
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
+        }
+
+        protected void Application_AuthenticateRequest(Object sender, EventArgs e)
+        {
+            var authCookie = Context.Request.Cookies[FormsAuthentication.FormsCookieName];
+            if (authCookie == null)
+            {
+                return;
+            }
+
+            try
+            {
+                var authTicket = FormsAuthentication.Decrypt(authCookie.Value);
+                if (authTicket == null || authTicket.Expired)
+                {
+                    return;
+                }
+                string[] roles = { authTicket.UserData };
+                var principal = new GenericPrincipal(new FormsIdentity(authTicket), roles);
+                Context.User = principal;
+            }
+            catch (Exception)
+            {
+                FormsAuthentication.SignOut();
+                Response.Redirect(FormsAuthentication.LoginUrl, false);
+                Context.ApplicationInstance.CompleteRequest();
+            }
         }
     }
 }
