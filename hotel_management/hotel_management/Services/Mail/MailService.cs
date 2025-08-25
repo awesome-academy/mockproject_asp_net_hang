@@ -20,8 +20,12 @@ namespace hotel_management.Services.Mail
             {
                 using (var client = new SmtpClient(_settings.SmtpHost, _settings.SmtpPort))
                 {
-                    client.EnableSsl = true;
-                    client.Credentials = new NetworkCredential(_settings.SmtpUser, _settings.SmtpPass);
+                    //client.EnableSsl = true;
+                    //client.Credentials = new NetworkCredential(_settings.SmtpUser, _settings.SmtpPass);
+
+                    // TODO: Run on local without SSL
+                    client.EnableSsl = false;
+                    client.UseDefaultCredentials = true;
 
                     using (var mail = new MailMessage())
                     {
